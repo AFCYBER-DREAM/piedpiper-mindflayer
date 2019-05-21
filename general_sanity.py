@@ -11,7 +11,7 @@ def validate_file(passed_file):
 
     # See if the argument is a valid path.
     try:
-        just_exists = user_file.resolve(strict=True)
+        user_file.resolve(strict=True)
     except FileNotFoundError:
         print(f"Error: {passed_file} could not be found from the current"
               + " directory.")
