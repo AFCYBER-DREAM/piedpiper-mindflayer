@@ -4,6 +4,7 @@ from sys import argv
 from pathlib import Path
 
 import yaml
+import os
 
 
 def validate_file(passed_file):
@@ -35,8 +36,33 @@ def test_structure(yaml_file):
     with open(yaml_file, 'r') as f:
         stack_yaml = yaml.safe_load(f)
 
-    txt = stack_yaml["functions"]
-    print(txt)
+    # Test for 'functions' key in YAML file.
+    assert 'functions' in stack_yaml, "Error: 'functions' not defined in file."
+
+    #parent_dir = os.path.dirname(str(yaml_file))
+    project_path = os.path.realpath(os.path.dirname(str(yaml_file)))
+
+    # Test for '.gitignore' file in base directory.
+    assert os.path.exists(os.path.join(project_path, '.gitignore'))
+
+    for key, value in stack_yaml['functions'].items():
+        # Test for template directory named after lang value.
+        assert os.path.exists(os.path.join(project_path, 'template',
+                                           value['lang']))
+
+        # Test for 'Dockerfile' in language specific template directory.
+        assert os.path.exists(os.path.join(project_path, 'template',
+                                           value['lang'], 'Dockerfile'))
+
+        # Test for 'requirements.txt' in function specific directory.
+        assert os.path.exists(os.path.join(project_path, key,
+                                           'requirements.txt'))
+
+        # Test for 'handler.py' in function specific directory.
+        assert os.path.exists(os.path.join(project_path, key, 'handler.py'))
+
+        # Test for '__init__.py' in function specific directory.
+        assert os.path.exists(os.path.join(project_path, key, '__init__.py'))
 
 
 if __name__ == "__main__":
