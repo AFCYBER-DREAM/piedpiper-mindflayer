@@ -1,5 +1,4 @@
 import os
-import pytest
 
 
 def test_stack_functions(stack_data):
