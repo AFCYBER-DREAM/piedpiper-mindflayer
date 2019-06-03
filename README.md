@@ -1,4 +1,5 @@
 # PiedPiper Mindflayer
+[![Build Status](https://travis-ci.com/AFCYBER-DREAM/piedpiper-mindflayer.svg?branch=master)](https://travis-ci.com/AFCYBER-DREAM/piedpiper-mindflayer)
 
 ### Table of Contents
 
@@ -7,6 +8,7 @@
 * [Usage](#usage)
 * [Inputs and Outputs](#inputs-and-outputs)
 * [Running the Tests](#running-the-tests)
+* [Travis-CI Integration](#travis-ci-integration)
 * [Test Prerequisites](#test-prerequisites)
 * [Contributing](#contributing)
 * [Versioning](#versioning)
@@ -82,10 +84,38 @@ root directory of a PiedPiper module.
 $ cd piedpiper-example_module-faas
 # Verify that the project directory has a `stack.yml` file.
 $ ls | grep stack.yml
-stack.yaml
+stack.yml
 # Run the pytest module against the project.
 $ pytest ../piedpiper-mindflayer/tests/test_stack_yaml.py
 ```
+
+### Travis-CI Integration
+
+To add Mindflayer to a Travis-CI pipeline, add strings to the `before_script`
+section of a repository's `.travis.yml` file.
+
+```yaml
+before_script:
+  - wget pip install pytest==4.5.0 PyYAML==5.1
+  - wget https://github.com/AFCYBER-DREAM/piedpiper-mindflayer/archive/master.zip -O /tmp/piedpiper-mindflayer.zip
+  - unzip /tmp/piedpiper-mindflayer.zip
+```
+
+In addition to the `before_script` section, the `script` section will also need
+directives to run the tests against the repository.
+
+```yaml
+script:
+  - pytest ./piedpiper-mindflayer-master/tests/test_stack_yaml.py
+```
+
+> **NOTE:**
+>
+> It is user preference to determine where Mindflayer will be downloaded and run
+> from.  The order in which a pipeline runs is also subjective, but the
+> development team recommends running the Mindflayer tests just after all syntax
+> scripts, but before any unit- or functional-testing.  Change the `.travis.yml`
+> file accordingly.
 
 ### Test Prerequisites
 
@@ -126,7 +156,9 @@ to us.
 
 ## Versioning
 
-Undetermined
+We use [SemVer](http://semver.org/) for versioning. For the versions available,
+see the
+[tags on this repository](https://github.com/piedpiper-flake8-faas/tags).
 
 ## Authors
 
@@ -136,4 +168,4 @@ See also the list of
 
 ## License
 
-Undeclared
+MIT
