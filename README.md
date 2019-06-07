@@ -91,22 +91,22 @@ $ pytest ../piedpiper-mindflayer/tests/test_stack_yaml.py
 
 ### Travis-CI Integration
 
-To add Mindflayer to a Travis-CI pipeline, add strings to the `before_script`
-section of a repository's `.travis.yml` file.
+To add Mindflayer to a Travis-CI pipeline, it is recommended to utilize Tox.
+The section of the `tox.ini` file that runs the Mindflayer tests should have at
+least what is outlined in the example below:
 
-```yaml
-before_script:
-  - wget pip install pytest==4.5.0 PyYAML==5.1
-  - wget https://github.com/AFCYBER-DREAM/piedpiper-mindflayer/archive/master.zip -O /tmp/piedpiper-mindflayer.zip
-  - unzip /tmp/piedpiper-mindflayer.zip
-```
-
-In addition to the `before_script` section, the `script` section will also need
-directives to run the tests against the repository.
-
-```yaml
-script:
-  - pytest ./piedpiper-mindflayer-master/tests/test_stack_yaml.py
+```data
+[testenv:sanity]
+deps =
+    pluggy==0.12.0
+    pytest==4.5.0
+    PyYAML==5.1
+commands_pre =
+    wget https://github.com/AFCYBER-DREAM/piedpiper-mindflayer/archive/v1.0.0.zip \
+        -O /tmp/piedpiper-mindflayer.zip
+    unzip /tmp/piedpiper-mindflayer.zip -d /tmp/
+commands =
+    pytest /tmp/piedpiper-mindflayer-1.0.0/tests/test_stack_yaml.py
 ```
 
 > **NOTE:**
