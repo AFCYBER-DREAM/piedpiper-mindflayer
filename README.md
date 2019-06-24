@@ -1,5 +1,5 @@
-# PiedPiper Mindflayer
-[![Build Status](https://travis-ci.com/AFCYBER-DREAM/piedpiper-mindflayer.svg?branch=master)](https://travis-ci.com/AFCYBER-DREAM/piedpiper-mindflayer)
+# PiperCI Mindflayer
+[![Build Status](https://travis-ci.com/AFCYBER-DREAM/piperci-mindflayer.svg?branch=master)](https://travis-ci.com/AFCYBER-DREAM/piperci-mindflayer)
 
 ### Table of Contents
 
@@ -18,7 +18,7 @@
 ## Getting Started
 
 Mindflayer is a series of tests that verifies the directory structure of
-PiedPiper FaaS projects/modules.  At the time of this writing, Mindflayer runs
+PiperCI FaaS projects/modules.  At the time of this writing, Mindflayer runs
 the following tests:
 
 * Functions are defined in FaaS module's `stack.yml` file.
@@ -44,9 +44,9 @@ the following tests:
 
 ### Usage
 
-To utilize Mindflayer, enter the parent directory for the PiedPiper module and
+To utilize Mindflayer, enter the parent directory for the PiperCI module and
 then call the `test_stack_yaml.py` script within the `tests` directory of the
-`piedpiper-mindflayer` project.  See [Running the Tests](#running-the-tests) for
+`piperci-mindflayer` project.  See [Running the Tests](#running-the-tests) for
 example of usage.
 
 ## Inputs and Outputs
@@ -57,13 +57,13 @@ Output for Mindflayer is in the pytest format.  The following output is an
 example of how a passing test will appear for a project with a single function.
 
 ```shell
-$ pytest ../piedpiper-mindflayer/tests/test_stack_yaml.py
+$ pytest ../piperci-mindflayer/tests/test_stack_yaml.py
 ============================= test session starts ==============================
 platform linux -- Python 3.7.3, pytest-4.5.0, py-1.8.0, pluggy-0.12.0
 rootdir: /home/user/Projects
 collected 10 items
 
-../piedpiper-mindflayer/tests/test_stack_yaml.py ..........              [100%]
+../piperci-mindflayer/tests/test_stack_yaml.py ..........              [100%]
 
 ========================== 10 passed in 0.01 seconds ===========================
 ```
@@ -78,15 +78,15 @@ collected 10 items
 ## Running the Tests
 
 As mentioned in the [Usage](#usage) section above, Mindflayer is called from the
-root directory of a PiedPiper module.
+root directory of a PiperCI module.
 
 ```shell
-$ cd piedpiper-example_module-faas
+$ cd piperci-example_module-faas
 # Verify that the project directory has a `stack.yml` file.
 $ ls | grep stack.yml
 stack.yml
 # Run the pytest module against the project.
-$ pytest ../piedpiper-mindflayer/tests/test_stack_yaml.py
+$ pytest ../piperci-mindflayer/tests/test_stack_yaml.py
 ```
 
 ### Travis-CI Integration
@@ -102,11 +102,11 @@ deps =
     pytest==4.5.0
     PyYAML==5.1
 commands_pre =
-    wget https://github.com/AFCYBER-DREAM/piedpiper-mindflayer/archive/v1.0.0.zip \
-        -O /tmp/piedpiper-mindflayer.zip
-    unzip /tmp/piedpiper-mindflayer.zip -d /tmp/
+    wget https://github.com/AFCYBER-DREAM/piperci-mindflayer/archive/v1.0.0.zip \
+        -O /tmp/piperci-mindflayer.zip
+    unzip /tmp/piperci-mindflayer.zip -d /tmp/
 commands =
-    pytest /tmp/piedpiper-mindflayer-1.0.0/tests/test_stack_yaml.py
+    pytest /tmp/piperci-mindflayer-1.0.0/tests/test_stack_yaml.py
 ```
 
 > **NOTE:**
@@ -127,7 +127,7 @@ environment.  Install both of these python modules with the following command:
 $ pip install --user pytest PyYAML
 ```
 
-To begin getting more useful output from Mindflayer, ensure that the PiedPiper
+To begin getting more useful output from Mindflayer, ensure that the PiperCI
 module has a `stack.yml` file in it's root directory.  The `stack.yml` file
 should be structured like the following example:
 
@@ -139,8 +139,8 @@ provider:
 functions:
   piedpier-example_module-function:
     lang: python
-    handler: ./piedpiper-example_module-function
-    image: piedpiper-example_module-function:latest
+    handler: ./piperci-example_module-function
+    image: piperci-example_module-function:latest
 ```
 
 If a `stack.yml` file exists within the module's root directory and structured
@@ -150,7 +150,7 @@ file structure.
 
 ## Contributing
 
-Please read [CONTRIBUTING.md](https://github.com/AFCYBER-DREAM/piedpiper-picli)
+Please read [CONTRIBUTING.md](https://github.com/AFCYBER-DREAM/piperci-picli)
 for details on our code of conduct, and the process for submitting pull requests
 to us.
 
@@ -158,12 +158,12 @@ to us.
 
 We use [SemVer](http://semver.org/) for versioning. For the versions available,
 see the
-[tags on this repository](https://github.com/piedpiper-mindflayer/tags).
+[tags on this repository](https://github.com/piperci-mindflayer/tags).
 
 ## Authors
 
 See also the list of
-[contributors](https://github.com/AFCYBER-DREAM/piedpiper-mindflayer/contributors)
+[contributors](https://github.com/AFCYBER-DREAM/piperci-mindflayer/contributors)
  who participated in this project.
 
 ## License
